@@ -13,8 +13,8 @@ Mailfull GUI - The GUI of a configuration tool for virtual domain email
 クイックスタートガイド
 ----------------------
 
-  MAilfullをインストール
-    <>
+  MAilfullをインストール  
+<https://github.com/directorz/mailfull>
   
   リポジトリ取得
 
