@@ -1,0 +1,62 @@
+		<div class="panel-body">
+			<div class="col-md-5">
+				<!-- <TMPL_VAR NAME="USER_ROLE"> -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="glyphicon glyphicon-bell"></i>.forward設定画面</h3>
+					</div>
+					<div class="panel-body">
+						<p class="description-dot">こちらでは<b><TMPL_VAR NAME=user>@<TMPL_VAR NAME=domain></b>のユーザの.foreard変更が出来ます。</p>
+						<p class="description-dot">メールを残しつつ、転送するメーリングリスト機能を利用することも出来ます。</p>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="glyphicon glyphicon-star"></i>.forward設定方法</h3>
+					</div>
+					<div class="panel-body">
+						<p class="description-dot">メールアドレスを入力すると、そのメールアドレスへ転送します。</p>
+						<p class="description-dot">メアドを入力し、ディレクトリ名を入力すると転送しつつそこにメールを保管します。（メーリス機能）</p>
+						<p class="description-dot">プログラムを設定する場合は、「|(パイプ)」の後にプログラムのフルパスを設定します。</p>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<TMPL_IF NAME="POSTMASTER_ROLE_ME">
+						<p class="description-dot"><a href="/user/get/">ユーザ一覧</a></p>
+						</TMPL_IF>
+						<p class="description-dot"><a href="/userdetail/get/">パスワード変更</a></p>
+						<p class="description-dot"><a href="/logout/">ログアウト</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7">
+
+				<h4 class="title">メーリングリスト設定</h4>
+				<form action="/userdetail/forward_change/" id="DeveloperUserPassForm" method="post" accept-charset="utf-8" autocomplete="off">
+					<div class="form-vartical">
+					<label for="domain">メーリングリスト設定</label><br>
+					<input name="mailing_list" class="form-control" id="mail_list_checkbox" value="1" type="checkbox"<TMPL_IF NAME="MAILING_LIST"> checked</TMPL_IF>><label class="checkbox_label" for="mail_list_checkbox">メーリングリストを利用する</label>
+					</div>
+					<label for="password">転送するメールアドレス<br>(改行区切り、転送可能ドメインは<TMPL_VAR name="domain">のみ)</label><br>
+					<textarea class="form-control area_ll" name="ailias_mail"><TMPL_LOOP NAME="ALIAS_ADDRESS"><TMPL_VAR NAME="line"></TMPL_LOOP></textarea>
+					<div class="btn-area">
+						<input name="add_button" class="btn btn-primary" type="submit" value="メーリングリスト設定変更"/>
+					</div>
+					<input type="hidden" name="target" value="1">
+				</form>
+
+				<h4 class="title">高度な設定</h4>
+				<form action="/userdetail/forward_change/" id="DeveloperUserPassForm" method="post" accept-charset="utf-8" autocomplete="off">
+					<label for="password">.forwardを編集する</label><br>
+					<textarea class="form-control area_ll" name="forward_edit"><TMPL_LOOP NAME="LINE"><TMPL_VAR NAME="line"></TMPL_LOOP></textarea>
+					<div class="btn-area">
+						<input name="add_button" class="btn btn-primary" type="submit" value=".forward変更"/>
+					</div>
+					<input type="hidden" name="target" value="2">
+				</form>
+
+			</div>
+		</div>

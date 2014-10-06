@@ -1,0 +1,212 @@
+	<link href="/docs/css/jquery.dataTables.css" rel="stylesheet">
+	<script type='text/javascript' src="/docs/js/jquery.dataTables.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		$("#paging").dataTable({
+			"oLanguage": {
+				"sLengthMenu": "表示行数 _MENU_ 件",
+				"oPaginate": {
+				"sNext": "次へ",
+				"sPrevious": "前へ"
+				},
+				"sInfo": "全_TOTAL_件 / _START_件 - _END_",
+				"sSearch": "検索："
+			}
+		});
+	});
+	</script>
+		<div class="panel-body">
+			<div class="col-md-5">
+				<!-- <TMPL_VAR NAME="USER_ROLE"> -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="glyphicon glyphicon-bell"></i>ユーザ一覧画面</h3>
+					</div>
+					<div class="panel-body">
+						<p class="description-dot">こちらでは<b><TMPL_VAR NAME=domain></b>のユーザの編集、削除、新規登録が出来ます。</p>
+						<p class="description-dot">ユーザの新規登録は右下のフォームよりユーザ名と、パスワードを指定の上登録下さい。</p>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="glyphicon glyphicon-info-sign"></i>License</h3>
+					</div>
+					<div class="panel-body">
+						<p class="description-dot">
+						Copyright (C) 2008-2014, SpryMedia Ltd.<br>
+						Released under the MIT license</p>
+						<p class="description-dot"><a href="http://www.datatables.net/download/index#License">http://www.datatables.net/download/index#License</a></p>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<TMPL_IF NAME="POSTMASTER_ROLE_ME">
+						<p class="description-dot"><a href="/domain/get/">ドメイン一覧</a></p>
+						</TMPL_IF>
+						<p class="description-dot"><a href="/aliasdomain/get/">エイリアスドメイン設定</a></p>
+						<p class="description-dot"><a href="/logout/">ログアウト</a></p>
+					</div>
+				</div>
+				
+			</div><!-- col-md-5 -->
+			<div class="col-md-7">
+
+				<!-- Nav tabs -->
+				<ul class="nav nav-tabs nav-justified" role="tablist">
+					<li class="active"><a href="#user_list" role="tab" data-toggle="tab">ユーザ設定</a></li>
+					<li><a href="#user_add" role="tab" data-toggle="tab">ユーザ追加</a></li>
+					<li><a href="#alias_list" role="tab" data-toggle="tab">エイリアス設定</a></li>
+				</ul>
+
+				<!-- Tab panes -->
+				<div class="tab-content">
+					<div class="tab-pane active" id="user_list">
+						<h4 class="title">ユーザ一覧</h4>
+						<table id="paging" class="table table-condensed">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th>ユーザ名</th>
+									<th>操作</th>
+									<th>キャッチオール</th>
+								</tr>
+							</thead>
+							<tbody>
+							<TMPL_LOOP NAME="RESULT">
+							<tr>
+								<td><TMPL_VAR NAME=number></td>
+								<td><TMPL_VAR NAME=user></td>
+								<td>
+									<a href="#" data-controller="userdetail" data-action="get" data-user="<TMPL_VAR NAME=user>" class="btn btn-warning btn-xs">PW変更</a>
+									<a href="#" data-controller="userdetail" data-action="forward"   data-user="<TMPL_VAR NAME=user>" class="btn btn-success btn-xs">.forward設定</a>
+									<a href="#" data-controller="user" data-action="del"   data-user="<TMPL_VAR NAME=user>" class="btn btn-danger btn-xs">削除</a>
+								</td>
+								<td>
+									<TMPL_IF NAME=catchall>
+									<a href="#" data-controller="user" data-action="user"  data-user="<TMPL_VAR NAME=user>" class="btn btn-default btn-xs" disabled="disabled">設定中</a>
+									<a href="#" data-controller="user" data-action="catchall_del"  data-user="<TMPL_VAR NAME=user>" class="btn btn-danger btn-xs">削除</a>
+									<TMPL_ELSE>
+									<a href="#" data-controller="user" data-action="catchall_set"  data-user="<TMPL_VAR NAME=user>" class="btn btn-info btn-xs">設定する</a>
+									</TMPL_IF>
+								</td>
+							</tr>
+							</TMPL_LOOP>
+							</tbody>
+						</table>
+					</div><!-- .tab-pane #user_list -->
+					
+					<div class="tab-pane" id="user_add">
+						<h4 class="title">ユーザ追加</h4>
+						<form action="/user/add/" id="DeveloperUserLoginForm" method="post" accept-charset="utf-8" autocomplete="off">
+							<label for="domain">ユーザID</label>
+							<input name="user" class="form-control" id="user" placeholder="ユーザID" type="text"/>
+
+							<label for="password">パスワード</label>
+							<input name="password" class="form-control" placeholder="Postmasterのパスワード" type="password" id="password"/>
+							<div class="btn-area">
+								<input name="add_button" class="btn btn-primary" type="submit" value="ユーザ追加"/>
+							</div>
+						</form>
+					</div><!-- .tab-pane #user_add -->
+
+					<div class="tab-pane" id="alias_list">
+						<h4 class="title">エイリアス一覧</h4>
+						<table class="table table-condensed">
+							<thead>
+								<tr>
+									<th>#</th>
+									<th colspan="2">エイリアス名</th>
+									<th colspan="2">別名</th>
+								</tr>
+							</thead>
+							<tbody>
+							<TMPL_LOOP NAME="ALIAS_RESULT">
+							<tr>
+								<td><TMPL_VAR NAME=number></td>
+								<td>
+									<TMPL_VAR NAME=user>
+								</td>
+								<td>
+									<a href="#" data-controller="user" data-action="alias_full_del"   data-user="<TMPL_VAR NAME=user>" class="btn btn-danger btn-xs">削除</a>
+								</td>
+								<td>
+									<table class="table table-striped">
+									<TMPL_LOOP NAME="dests">
+										<tr>
+										<td><TMPL_VAR NAME=name></td>
+										<td><a href="#" data-controller="user" data-action="alias_del" data-user="<TMPL_VAR NAME=alias_user>" data-dest="<TMPL_VAR NAME=name>" class="btn btn-danger btn-xs">削除</a></td>
+										</tr>
+									</TMPL_LOOP>
+										<tr>
+											<td>
+												<input name="dest" class="form-control" placeholder="別名の追加（ドメインは不要）" type="text" id="dest_name_add_<TMPL_VAR NAME=number>"/>
+											</td>
+											<td>
+												<a href="#" data-controller="user" data-action="alias_dest_add" data-user="<TMPL_VAR NAME=user>" data-add-id="<TMPL_VAR NAME=number>" class="btn btn-info btn-xs dest_add">追加</a>
+											</td>
+										</tr>
+									</table>
+								</td>
+							</tr>
+							</TMPL_LOOP>
+							</tbody>
+						</table>
+						<h4 class="title">エイリアス追加</h4>
+						<form action="/user/alias_add/" id="DeveloperUserLoginForm" method="post" accept-charset="utf-8" autocomplete="off">
+							<label for="alias_name">エイリアス名</label>
+							<input name="alias" class="form-control" id="alias_name" placeholder="エイリアス名(ドメインは不要)" type="text"/>
+
+							<label for="dest_name">別名</label>
+							<input name="dest" class="form-control" placeholder="別名（ドメインは不要）" type="text" id="dest_name"/>
+							<div class="btn-area">
+								<input name="add_button" class="btn btn-primary" type="submit" value="エイリアス追加"/>
+							</div>
+						</form>
+					</div> <!-- .tab-pane #alias_list -->
+
+
+				</div><!-- .tab-content -->
+			</div><!-- .col-md-7 -->
+		</div>
+
+<script type="text/javascript">
+	$(function(){
+		$("a.btn").click(function(){
+			var controller = $(this).attr('data-controller');
+			var action = $(this).attr('data-action');
+			if (action == "alias_del") {
+				var user = $(this).attr('data-user');
+				var dest = $(this).attr('data-dest');
+				$('<form/>', {id: 'cse-search-box',action: '/' + controller + '/' + action + '/', method: 'post'})
+					.append($('<input/>', {type: 'hidden', name: 'user', value: user}))
+					.append($('<input/>', {type: 'hidden', name: 'dest', value: dest}))
+					.appendTo(document.body)
+					.submit();
+			} else if (action == "alias_dest_add") {
+				var user = $(this).attr('data-user');
+				var id = $(this).attr('data-add-id');
+				var dest = $('#dest_name_add_'+id).val();
+				$('<form/>', {id: 'cse-search-box',action: '/' + controller + '/' + action + '/', method: 'post'})
+					.append($('<input/>', {type: 'hidden', name: 'user', value: user}))
+					.append($('<input/>', {type: 'hidden', name: 'dest', value: dest}))
+					.appendTo(document.body)
+					.submit();
+			} else if (action != "del" || window.confirm('本当に削除しますか？')) {
+				var user = $(this).attr('data-user');
+				$('<form/>', {id: 'cse-search-box',action: '/' + controller + '/' + action + '/', method: 'post'})
+					.append($('<input/>', {type: 'hidden', name: 'user', value: user}))
+					.appendTo(document.body)
+					.submit();
+			}
+			return false;
+		});
+		$('#myTab a').click(function (e) {
+			e.preventDefault()
+			$(this).tab('show')
+		});
+	<TMPL_IF NAME=SHOW_ALIAS>$('a[href="#alias_list"]').tab('show');</TMPL_IF>
+	<TMPL_IF NAME=SHOW_ADD>$('a[href="#user_add"]').tab('show');</TMPL_IF>
+	});
+</script>

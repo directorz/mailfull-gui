@@ -1,0 +1,71 @@
+		<div class="panel-body">
+			<div class="col-md-5">
+				<!-- <TMPL_VAR NAME="USER_ROLE"> -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="glyphicon glyphicon-bell"></i>エイリアスドメイン一覧画面</h3>
+					</div>
+					<div class="panel-body">
+						<p class="description-dot">こちらでは<b><TMPL_VAR NAME=domain></b>のエイリアス削除、新規登録が出来ます。</p>
+						<p class="description-dot">エイリアスドメインの新規登録は右下のフォームよりエイリアスドメイン名と、パスワードを指定の上登録下さい。</p>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<p class="description-dot"><a href="/domain/get/">ドメイン一覧</a></p>
+						<p class="description-dot"><a href="/user/get/">ユーザ一覧</a></p>
+						<p class="description-dot"><a href="/logout/">ログアウト</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7">
+				<h4 class="title">エイリアスドメイン一覧</h4>
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>エイリアスドメイン名</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+				<tbody>
+					<TMPL_LOOP NAME="RESULT">
+					<tr>
+						<td><TMPL_VAR NAME=number></td>
+						<td><TMPL_VAR NAME=aliasdomain></td>
+						<td>
+							<a href="#" data-controller="aliasdomain" data-action="del"   data-aliasdomain="<TMPL_VAR NAME=aliasdomain>" class="btn btn-danger btn-xs">エイリアスドメイン削除</a>
+						</td>
+					</tr>
+					</TMPL_LOOP>
+				</tbody>
+				</table>
+
+				<h4 class="title">エイリアスドメイン追加</h4>
+				<form action="/aliasdomain/add/" id="AliasdomainLoginForm" method="post" accept-charset="utf-8" autocomplete="off">
+					<label for="domain">エイリアスドメインID</label>
+					<input name="aliasdomain" class="form-control" id="aliasdomain" placeholder="エイリアスドメインID" type="text"/>
+
+					<div class="btn-area">
+						<input name="add_button" class="btn btn-primary" type="submit" value="エイリアスドメイン追加"/>
+					</div>
+				
+			</div>
+		</div>
+<script type="text/javascript">
+	$(function(){
+		$("a.btn").click(function(){
+			var controller = $(this).attr('data-controller');
+			var action = $(this).attr('data-action');
+			if (action != "del" || window.confirm('本当に削除しますか？')) {
+				var aliasdomain = $(this).attr('data-aliasdomain');
+				$('<form/>', {id: 'cse-search-box',action: '/' + controller + '/' + action + '/', method: 'post'})
+					.append($('<input/>', {type: 'hidden', name: 'aliasdomain', value: aliasdomain}))
+					.appendTo(document.body)
+					.submit();
+			}
+			return false;
+		});
+	});
+</script>

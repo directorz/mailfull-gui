@@ -1,0 +1,47 @@
+		<div class="panel-body"><!-- <TMPL_VAR NAME="USER_ROLE"> -->
+			<div class="col-md-7">
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="glyphicon glyphicon-bell"></i> mailfulへようこそ！</h3>
+					</div>
+					<div class="panel-body">
+						<p class="description-dot">mailfull（メイルフル）は、Postfix用の複数ドメイン管理ツールです。</p>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="glyphicon glyphicon-download-alt"></i> mailfulのインストール、使い方</h3>
+					</div>
+					<div class="panel-body">
+						<p class="description-dot">mailfullはオープンソースソフトウェアで誰でも利用することが出来ます。</p>
+						<p class="description-dot">利用する場合は<a href="https://github.com/directorz/mailfull">github</a>からインストールして下さい。</p>
+					</div>
+				</div>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="glyphicon glyphicon-user"></i> 当WebGUIの使い方</h3>
+					</div>
+					<div class="panel-body">
+						<p class="description-dot">当GUIツールをご利用の場合はサーバよりconfigファイルを作成し、ユーザの作成を行って下さい。</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5">
+				<label>会員ログイン</label>
+				<form action="/login" method="post" accept-charset="utf-8">
+					<div style="display:none;">
+						<input type="hidden" name="_method" value="POST"/>
+						<input type="hidden" name="data[_Token][key]" value="19e31b137934b8d7fae79eb733f4c49761ec3a41" id="Token111757797"/>
+					</div>
+					<input name="user" class="form-control" id="email" placeholder="メールアドレス" type="text"/>
+					<input name="password" class="form-control" placeholder="パスワード" type="password" id="LoginPassword"/>
+					<div class="btn-area">
+						<input name="login_button" class="btn btn-primary" type="submit" value="ログイン"/>
+					</div>
+					<div style="display:none;">
+						<input type="hidden" name="data[_Token][fields]" value="e1a0bf37e6ea7f610aee07d3003267ae09ea7912%3A" id="TokenFields1987006322"/>
+						<input type="hidden" name="data[_Token][unlocked]" value="" id="TokenUnlocked193517343"/>
+					</div>
+				</form>
+			</div>
+		</div>

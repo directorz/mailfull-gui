@@ -1,0 +1,70 @@
+		<div class="panel-body">
+			<div class="col-md-5">
+				<!-- <TMPL_VAR NAME="USER_ROLE"> -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="glyphicon glyphicon-bell"></i>エイリアス一覧画面</h3>
+					</div>
+					<div class="panel-body">
+						<p class="description-dot">こちらでは<b><TMPL_VAR NAME=domain></b>のエイリアス削除、新規登録が出来ます。</p>
+						<p class="description-dot">エイリアスの新規登録は右下のフォームよりエイリアス名を指定の上登録下さい。</p>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<p class="description-dot"><a href="/domain/get/">ドメイン一覧</a></p>
+						<p class="description-dot"><a href="/logout/">ログアウト</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7">
+				<h4 class="title">エイリアス一覧</h4>
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>エイリアス名</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+				<tbody>
+					<TMPL_LOOP NAME="RESULT">
+					<tr>
+						<td><TMPL_VAR NAME=number></td>
+						<td><TMPL_VAR NAME=alias></td>
+						<td>
+							<a href="#" data-controller="alias" data-action="del"   data-alias="<TMPL_VAR NAME=alias>" class="btn btn-danger btn-xs">エイリアス削除</a>
+						</td>
+					</tr>
+					</TMPL_LOOP>
+				</tbody>
+				</table>
+
+				<h4 class="title">エイリアス追加</h4>
+				<form action="/alias/add/" id="AliasLoginForm" method="post" accept-charset="utf-8" autocomplete="off">
+					<label for="domain">エイリアスドメイン名</label>
+					<input name="alias" class="form-control" id="alias" placeholder="エイリアスID" type="text"/>
+
+					<div class="btn-area">
+						<input name="add_button" class="btn btn-primary" type="submit" value="エイリアス追加"/>
+					</div>
+				
+			</div>
+		</div>
+<script type="text/javascript">
+	$(function(){
+		$("a.btn").click(function(){
+			var controller = $(this).attr('data-controller');
+			var action = $(this).attr('data-action');
+			if (action != "del" || window.confirm('本当に削除しますか？')) {
+				var alias = $(this).attr('data-alias');
+				$('<form/>', {id: 'cse-search-box',action: '/' + controller + '/' + action + '/', method: 'post'})
+					.append($('<input/>', {type: 'hidden', name: 'alias', value: alias}))
+					.appendTo(document.body)
+					.submit();
+			}
+			return false;
+		});
+	});
+</script>

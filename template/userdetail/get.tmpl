@@ -1,0 +1,38 @@
+		<div class="panel-body">
+			<div class="col-md-5">
+				<!-- <TMPL_VAR NAME="USER_ROLE"> -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="glyphicon glyphicon-bell"></i>パスワード変更画面</h3>
+					</div>
+					<div class="panel-body">
+						<p class="description-dot">こちらでは<b><TMPL_VAR NAME=user>@<TMPL_VAR NAME=domain></b>のユーザのパスワード変更が出来ます。</p>
+						<p class="description-dot">パスワード変更は右のフォームよりパスワードを指定の上登録下さい。</p>
+					</div>
+				</div>
+				
+				<div class="panel panel-default">
+					<div class="panel-body">
+						<TMPL_IF NAME="POSTMASTER_ROLE_ME">
+						<p class="description-dot"><a href="/user/get/">ユーザ一覧</a></p>
+						</TMPL_IF>
+						<p class="description-dot"><a href="/userdetail/forward/">.forward変更</a></p>
+						<p class="description-dot"><a href="/logout/">ログアウト</a></p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-7">
+
+				<h4 class="title">パスワード変更</h4>
+				<form action="/userpass/change/" id="DeveloperUserPassForm" method="post" accept-charset="utf-8" autocomplete="off">
+					<label for="domain">ユーザID</label>
+					<input name="user" class="form-control" id="user" value="<TMPL_VAR NAME=user>" type="text" readonly/>
+
+					<label for="password">パスワード</label>
+					<input name="password" class="form-control" placeholder="変更するパスワード" type="password" id="password"/>
+					<div class="btn-area">
+						<input name="add_button" class="btn btn-primary" type="submit" value="パスワード変更"/>
+					</div>
+				
+			</div>
+		</div>

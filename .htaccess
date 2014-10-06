@@ -1,0 +1,33 @@
+# Add correct content-type for fonts 
+AddType application/vnd.ms-fontobject .eot
+AddType font/ttf .ttf
+AddType font/otf .otf
+AddType font/x-woff .woff
+AddType image/svg+xml .svg
+ 
+# Compress compressible fonts
+AddOutputFilterByType DEFLATE font/ttf font/otf image/svg+xml
+ 
+# Add a far future Expires header for fonts
+ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+ExpiresByType font/ttf "access plus 1 year"
+ExpiresByType font/otf "access plus 1 year"
+ExpiresByType font/x-woff "access plus 1 year"
+ExpiresByType image/svg+xml "access plus 1 year"
+
+<IfModule mod_rewrite.c>
+	RewriteEngine On 
+	RewriteBase /
+	RewriteCond %{REQUEST_FILENAME} -f [OR]
+	RewriteCond %{REQUEST_FILENAME} -d
+	RewriteRule ^.* - [L]
+
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteRule ^$ index.pl?action=index [L]
+	RewriteRule ^logout index.pl?controller=login&action=logout [L]
+	RewriteRule ^(.+)/(.+)/$ index.pl?controller=$1&action=$2 [L]
+	RewriteRule ^(.+)/$ index.pl?action=$1 [L]
+	RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.pl
+</IfModule>
+

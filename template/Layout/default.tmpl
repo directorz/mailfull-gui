@@ -1,0 +1,48 @@
+
+<!DOCTYPE html>
+<html lang="jp">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<title>Mailfull - A configuration tool for virtual domain </title>
+
+	<meta name="generator" content="Bootply" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+	<link href="/docs/css/bootstrap.css?version=20140824" rel="stylesheet">
+	<link href="/docs/css/modern-business.css?version=20140824" rel="stylesheet">
+	<link href="/docs/css/font-awesome/css/font-awesome.min.css?version=20140824" rel="stylesheet">
+	<link href="/docs/css/common.css?version=20140824" rel="stylesheet">
+
+	<!--[if lt IE 9]>
+	<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<script type='text/javascript' src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script type='text/javascript' src="/docs/js/bootstrap.js"></script>
+
+</head>
+
+<body onLoad="document.forms[0].elements['email'].focus();">
+	<div id="background"></div>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-10 col-md-offset-1">
+				<div class="login-panel panel">
+					<div class="panel-heading">
+						<h3 class="panel-title high-title">Mailfull!!!!!!!!</h3>
+					</div>
+						<TMPL_IF NAME="INFO_MESSAGE">
+						<p class="bg-<TMPL_VAR NAME="INFO_CONTEXT">"><TMPL_VAR NAME="INFO_MESSAGE"></p>
+						</TMPL_IF>
+						<TMPL_VAR NAME=MAIN_CONTENTS>
+					<div class="panel-footer">
+						<p>Mailfull GUI </p>
+						<p><a href="http://unago.jp" target="_blank">Copyright © Unago, Inc. all rights reserved.</a></p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

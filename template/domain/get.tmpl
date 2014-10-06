@@ -1,0 +1,69 @@
+		<div class="panel-body">
+			<div class="col-md-5">
+				<!-- <TMPL_VAR NAME="USER_ROLE"> -->
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						<h3 class="panel-title"><i class="glyphicon glyphicon-bell"></i>ドメイン一覧画面</h3>
+					</div>
+					<div class="panel-body">
+						<p class="description-dot">こちらではドメインの編集、削除、新規登録が出来ます。</p>
+						<p class="description-dot">ドメインの新規登録は右下のフォームよりドメインと、Postmasteのパスワードを指定の上登録下さい。。</p>
+					</div>
+				</div>
+				
+				<TMPL_INCLUDE NAME="template/include/left_navi_logout.tmpl">
+			</div>
+			<div class="col-md-7">
+				<h4 class="title">ドメイン一覧</h4>
+				<table class="table table-condensed">
+					<thead>
+						<tr>
+							<th>#</th>
+							<th>ドメイン</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+				<tbody>
+					<TMPL_LOOP NAME="RESULT">
+					<tr>
+						<td><TMPL_VAR NAME=number></td>
+						<td><TMPL_VAR NAME=domain></td>
+						<td>
+							<a href="#" data-controller="user"   data-action="get"  data-domain="<TMPL_VAR NAME=domain>" class="btn btn-info btn-xs">ユーザ設定</a>
+							<a href="#" data-controller="aliasdomain" data-action="get" data-domain="<TMPL_VAR NAME=domain>" class="btn btn-warning btn-xs">エイリアスドメイン設定</a>
+							<a href="#" data-controller="domain" data-action="del"   data-domain="<TMPL_VAR NAME=domain>" class="btn btn-danger btn-xs">削除</a>
+						</td>
+					</tr>
+					</TMPL_LOOP>
+				</tbody>
+				</table>
+
+				<h4 class="title">ドメイン追加</h4>
+				<form action="/domain/add/" id="DeveloperUserLoginForm" method="post" accept-charset="utf-8" autocomplete="off">
+					<label for="domain">ドメイン</label>
+					<input name="domain" class="form-control" id="domain" placeholder="ドメイン" type="text"/>
+
+					<label for="password">パスワード</label>
+					<input name="password" class="form-control" placeholder="Postmasterのパスワード" type="password" id="password"/>
+					<div class="btn-area">
+						<input name="add_button" class="btn btn-primary" type="submit" value="ドメイン追加"/>
+					</div>
+				
+			</div>
+		</div>
+<script type="text/javascript">
+	$(function(){
+		$("a.btn").click(function(){
+			var controller = $(this).attr('data-controller');
+			var action = $(this).attr('data-action');
+			if (action != "del" || window.confirm('本当に削除しますか？')) {
+				var domain = $(this).attr('data-domain');
+				$('<form/>', {id: 'cse-search-box',action: '/' + controller + '/' + action + '/', method: 'post'})
+					.append($('<input/>', {type: 'hidden', name: 'domain', value: domain}))
+					.appendTo(document.body)
+					.submit();
+			}
+			return false;
+		});
+	});
+</script>
