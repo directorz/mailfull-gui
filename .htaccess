@@ -15,6 +15,7 @@ ExpiresByType font/otf "access plus 1 year"
 ExpiresByType font/x-woff "access plus 1 year"
 ExpiresByType image/svg+xml "access plus 1 year"
 
+
 <IfModule mod_rewrite.c>
 	RewriteEngine On 
 	RewriteBase /

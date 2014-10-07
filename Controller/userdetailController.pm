@@ -101,24 +101,33 @@ sub forward {
 	my @line = <FH>;
 	close FH;
 	
-	my $mailing_list = 0;
+	my $user_mail = 0;
+	my $high_level = 0;
 	my @alias_address;
-	if ($line[0] =~ /\#mailing_list/) {
-		$mailing_list = 1;
+	my @ret_line;
+	my @ret_alias_address;
+	
+	# .forwardが空の場合はただのユーザなので
+	my $num = @line;
+	if ($num == 0) {
+		$user_mail = 1;
+	} else {
 		foreach my $address (@line) {
 			if ($address =~ /\@/) {
 				push(@alias_address, $address);
+			} elsif ($address =~ /^\/home/) {
+				$user_mail = 1;
+			} else {
+				$high_level = 1;
 			}
 		}
+		push(@ret_line, {'line' => $_}) foreach (@line);
+		push(@ret_alias_address, {'line' => $_}) foreach (@alias_address);
 	}
-	my @ret_line;
-	my @ret_alias_address;
-	push(@ret_line, {'line' => $_}) foreach (@line);
-	push(@ret_alias_address, {'line' => $_}) foreach (@alias_address);
-
 	$self->template->param(DOMAIN => $domain);
 	$self->template->param(USER => $user);
-	$self->template->param(MAILING_LIST => $mailing_list);
+	$self->template->param(USER_MAIL => $user_mail);
+	$self->template->param(HIGH_LEVEL => $high_level);
 	$self->template->param(LINE => \@ret_line);
 	$self->template->param(ALIAS_ADDRESS => \@ret_alias_address);
 	$self->render();
@@ -133,19 +142,19 @@ sub forward_change {
 	my $cfg = Mailfull::Common::Config->load;
 	my $home_dir = "$cfg->{dir_data}/$domain/$user";
 
-	open (FH, ">$home_dir/.forward");
+	open (FH, ">$home_dir/.forward") or die("ng");
 	# メーリングリスト設定
 	if ($self->params->param('target') == 1) {
-		my $mailing_list = $self->params->param('mailing_list');
+		my $user_mail = $self->params->param('user_mail');
 		my $ailias_mail = $self->params->param('ailias_mail');
-		my $result = "\#mailing_list\n";
-		$result .= "$home_dir/Maildir/\n";
-		if ($mailing_list) {
-			foreach my $a(split(/\n/, $ailias_mail)) {
-				$a = $self->trim($a);
-				if ($a =~ /\@$domain$/) {
-					$result .= "$a\n";
-				}
+		my $result = "";
+		if ($user_mail) {
+			$result .= "$home_dir/Maildir/\n";
+		}
+		foreach my $a(split(/\n/, $ailias_mail)) {
+			$a = $self->trim($a);
+			if ($a =~ /\@/) {
+				$result .= "$a\n";
 			}
 		}
 		print FH $result;

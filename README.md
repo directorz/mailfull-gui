@@ -18,9 +18,8 @@ Mailfull GUI - The GUI of a configuration tool for virtual domain email
   
   リポジトリ取得
 
-    # cd /home/mailfull/gui
-    # git clone git://github.com/directorz/mailfull-gui.git
-    # useradd -M -s /bin/bash mailfull
+    # git clone git://github.com/directorz/mailfull-gui.git /home/mailfull/gui
+    # chmod 755 /home/mailfull/gui/index.pl
 
   suEXECのために/var/www以下をmount
     
@@ -46,6 +45,7 @@ Mailfull GUI - The GUI of a configuration tool for virtual domain email
 
   * ドメインマスターユーザは
   *  mailfull_master/mailfull_master でログイン可能です。
+  * ユーザ、パスワードの変更は/home/mailfull/gui/const.pm を修正して下さい。
 
 機能
 ----

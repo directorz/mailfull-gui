@@ -1,4 +1,12 @@
 use strict;
+
+# マスタユーザのIDとパスワード
+*MASTER_USER_ID = \"mailfull_master";
+*MASTER_USER_PW = \"mailfull_master";
+
+# セッションファイルの有効時間
+*SESSION_FILE_DURATION = \'1';
+
 *MESSAGE = \{
 1 => '正常に処理が完了しました。',
 
@@ -44,13 +52,6 @@ use strict;
 
 # セッションファイルの形式（base64）
 *SESSION_FILE_REG = \'^([0-9a-f]{32})$';
-
-# セッションファイルの有効時間
-*SESSION_FILE_DURATION = \'1';
-
-# マスタユーザのIDとパスワード
-*MASTER_USER_ID = \"mailfull_master";
-*MASTER_USER_PW = \"mailfull_master";
 
 *MASTER_ROLE       = \"99";
 *POSTMASTER_ROLE  = \"2";
