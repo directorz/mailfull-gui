@@ -26,7 +26,7 @@ Mailfull GUI - The GUI of a configuration tool for virtual domain email
     # cd /var/www/
     # mkdir -p /var/www/html_mailfull/
     # mount --bind /home/mailfull/gui/ /var/www/html_mailfull/
-    # echo '/home/js-furniture.jp	/home/saunashi/js-furniture.jp	none	bind	0 0' >> /etc/fstab
+    # echo '/home/mailfull/gui/	/var/www/html_mailfull/	none	bind	0 0' >> /etc/fstab
 
   Apacheのconfigを作成
 
