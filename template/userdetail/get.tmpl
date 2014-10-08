@@ -24,12 +24,12 @@
 			<div class="col-md-7">
 
 				<h4 class="title">パスワード変更</h4>
-				<form action="/userpass/change/" id="DeveloperUserPassForm" method="post" accept-charset="utf-8" autocomplete="off">
+				<form action="/userdetail/change/" id="DeveloperUserPassForm" method="post" accept-charset="utf-8" autocomplete="off">
 					<label for="domain">ユーザID</label>
 					<input name="user" class="form-control" id="user" value="<TMPL_VAR NAME=user>" type="text" readonly/>
 
 					<label for="password">パスワード</label>
-					<input name="password" class="form-control" placeholder="変更するパスワード" type="password" id="password"/>
+					<input name="password" class="form-control" placeholder="変更するパスワード" type="text" id="password"/>
 					<div class="btn-area">
 						<input name="add_button" class="btn btn-primary" type="submit" value="パスワード変更"/>
 					</div>
