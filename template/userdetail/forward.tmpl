@@ -6,8 +6,7 @@
 						<h3 class="panel-title"><i class="glyphicon glyphicon-bell"></i>転送設定画面</h3>
 					</div>
 					<div class="panel-body">
-						<p class="description-dot">こちらでは<b><TMPL_VAR NAME=user>@<TMPL_VAR NAME=domain></b>のユーザの.foreard変更が出来ます。</p>
-						<p class="description-dot">メールを残しつつ、転送する転送機能を利用することも出来ます。</p>
+						<p class="description-dot">こちらでは<b><TMPL_VAR NAME=user>@<TMPL_VAR NAME=domain></b>のユーザーの転送設定(.forwardの設定)が出来ます。</p>
 					</div>
 				</div>
 				
@@ -17,8 +16,8 @@
 					</div>
 					<div class="panel-body">
 						<p class="description-dot">メールアドレスを入力すると、そのメールアドレスへ転送します。</p>
-						<p class="description-dot">メアドを入力し、ディレクトリ名を入力すると転送しつつそこにメールを保管します。（メーリス機能）</p>
-						<p class="description-dot">プログラムを設定する場合は、「|(パイプ)」の後にプログラムのフルパスを設定します。</p>
+						<p class="description-dot">「メールボックスにもためる」にチェックをするとメールボックにもメールがたまります。</p>
+						<p class="description-dot">プログラムを設定する等、.forwardを直接編集したい場合は「高度な設定」タブから設定が可能です。</p>
 					</div>
 				</div>
 				
@@ -59,7 +58,7 @@
 						<form action="/userdetail/forward_change/" id="DeveloperUserPassForm" method="post" accept-charset="utf-8" autocomplete="off">
 							<div class="form-vartical">
 							<label for="domain">転送設定</label><br>
-							<input name="user_mail" class="form-control" id="mail_list_checkbox" value="1" type="checkbox"<TMPL_IF NAME="USER_MAIL"> checked</TMPL_IF>><label class="checkbox_label" for="mail_list_checkbox">メールボックスにためる</label>
+							<input name="user_mail" class="form-control" id="mail_list_checkbox" value="1" type="checkbox"<TMPL_IF NAME="USER_MAIL"> checked</TMPL_IF>><label class="checkbox_label" for="mail_list_checkbox">メールボックスにもためる</label>
 							</div>
 							<label for="password">転送するメールアドレス</label><br>
 							<textarea class="form-control area_ll" name="ailias_mail"><TMPL_LOOP NAME="ALIAS_ADDRESS"><TMPL_VAR NAME="line"></TMPL_LOOP></textarea>
