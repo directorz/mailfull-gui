@@ -276,11 +276,7 @@ sub alias_dest_add {
 		$self->set_message($self->get_message($main::ERROR_CD_EMPTY), 'danger');
 	} else {
 		my $dest = $self->params->param('dest');
-		if ($dest =~ /@/) {
-			@tmp = split('@', $dest);
-			$dest = $tmp[0];
-		}
-		my @alias_dest = ($dest. '@'. $domain);
+		my @alias_dest = ($dest);
 		my $c = Mailfull::Core->alias_add($domain, $self->params->param('user'), \@alias_dest);
 		if ($c->{retval} != 1) {
 			$self->set_message($self->get_message($c->{retval}), 'danger');
