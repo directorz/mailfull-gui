@@ -20,6 +20,7 @@ Mailfull GUI - The GUI of a configuration tool for virtual domain email
 
     # git clone git://github.com/directorz/mailfull-gui.git /home/mailfull/gui
     # chmod 755 /home/mailfull/gui/index.pl
+    # chown -R mailfull:mailfull /home/mailfull/gui
 
   suEXECのために/var/www以下をmount
     
