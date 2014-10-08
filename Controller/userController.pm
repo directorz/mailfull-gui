@@ -194,9 +194,9 @@ sub catchall_del {
 		my $c = Mailfull::Core->catchall_del($domain);
 		# キャッチオール未設定：302で返ってくる
 		if ($c->{retval} == 1 || $c->{retval} == 302) {
+			Mailfull::Core->commit();
 			$self->set_message($self->get_message($c->{retval}), 'success');
 		} else {
-			Mailfull::Core->commit();
 			$self->set_message($self->get_message($c->{retval}), 'danger');
 		}
 	}
