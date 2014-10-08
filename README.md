@@ -32,7 +32,7 @@ Mailfull GUI - The GUI of a configuration tool for virtual domain email
 
     # cd /home/mailfull/gui/etc
     # vi mailfullgui.conf
-    * ドメインを修正
+    * 環境に合わせドメインを等を修正
     # cp mailfullgui.conf /etc/http/conf.d/
 
   Apacheを再起動
