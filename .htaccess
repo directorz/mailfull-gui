@@ -24,6 +24,6 @@ ExpiresByType image/svg+xml "access plus 1 year"
 	RewriteRule ^logout index.pl?controller=login&action=logout [L]
 	RewriteRule ^(.+)/(.+)/$ index.pl?controller=$1&action=$2 [L]
 	RewriteRule ^(.+)/$ index.pl?action=$1 [L]
-	RewriteRule !\.(js|ico|gif|jpg|png|css)$ index.pl
+	RewriteRule !\.(js|ico|gif|jpg|png|css|eot|ttf|otf|woff|svg)$ index.pl
 </IfModule>
 
