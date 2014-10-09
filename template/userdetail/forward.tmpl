@@ -59,7 +59,7 @@
 							<div class="form-vartical">
 							<label for="domain">転送設定</label><br>
 							</div>
-							<textarea class="form-control area_ll" name="ailias_mail"><TMPL_LOOP NAME="ALIAS_ADDRESS"><TMPL_VAR NAME="line"></TMPL_LOOP></textarea>
+							<textarea class="form-control area_ll" name="ailias_mail"><TMPL_LOOP NAME="ALIAS_ADDRESS"><TMPL_VAR NAME="line"></TMPL_LOOP></textarea><br>
 							<label for="password">メールボックスの設定</label><br>
 							<input name="user_mail" class="form-control" id="mail_list_checkbox" value="1" type="checkbox"<TMPL_IF NAME="USER_MAIL"> checked</TMPL_IF>><label class="checkbox_label" for="mail_list_checkbox">メールボックスにためる</label>
 							<input type="hidden" name="target" value="1">
