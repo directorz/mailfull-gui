@@ -19,9 +19,6 @@ ExpiresByType image/svg+xml "access plus 1 year"
 <IfModule mod_rewrite.c>
 	RewriteEngine On 
 	RewriteBase /
-
-	RewriteCond %{REQUEST_FILENAME} !-f
-	RewriteCond %{REQUEST_FILENAME} !-d
 	RewriteRule ^const.pm$ index.pl?action=index [L]
 	RewriteRule ^$ index.pl?action=index [L]
 	RewriteRule ^logout index.pl?controller=login&action=logout [L]
