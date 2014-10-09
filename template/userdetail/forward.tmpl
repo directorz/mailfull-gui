@@ -15,7 +15,7 @@
 						<h3 class="panel-title"><i class="glyphicon glyphicon-star"></i>転送設定方法</h3>
 					</div>
 					<div class="panel-body">
-						<p class="description-dot">メールアドレスを入力すると、そのメールアドレスへ転送します。</p>
+						<p class="description-dot">メールアドレスを入力すると、そのメールアドレスへ転送します。複数アドレス登録する際には改行で区切ってください。</p>
 						<p class="description-dot">「メールボックスにためる」にチェックをするとメールボックにもメールがたまります。</p>
 						<p class="description-dot">プログラムを設定する等、.forwardを直接編集したい場合は「高度な設定」タブから設定が可能です。</p>
 					</div>
@@ -57,7 +57,7 @@
 						<h4 class="title">転送設定</h4>
 						<form action="/userdetail/forward_change/" id="DeveloperUserPassForm" method="post" accept-charset="utf-8" autocomplete="off">
 							<div class="form-vartical">
-							<label for="domain">転送設定</label><br>
+							<label for="domain">転送先アドレスの登録</label><br>
 							</div>
 							<textarea class="form-control area_ll" name="ailias_mail"><TMPL_LOOP NAME="ALIAS_ADDRESS"><TMPL_VAR NAME="line"></TMPL_LOOP></textarea><br>
 							<label for="password">メールボックスの設定</label><br>
