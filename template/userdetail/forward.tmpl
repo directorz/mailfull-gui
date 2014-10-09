@@ -16,7 +16,7 @@
 					</div>
 					<div class="panel-body">
 						<p class="description-dot">メールアドレスを入力すると、そのメールアドレスへ転送します。</p>
-						<p class="description-dot">「メールボックスにもためる」にチェックをするとメールボックにもメールがたまります。</p>
+						<p class="description-dot">「メールボックスにためる」にチェックをするとメールボックにもメールがたまります。</p>
 						<p class="description-dot">プログラムを設定する等、.forwardを直接編集したい場合は「高度な設定」タブから設定が可能です。</p>
 					</div>
 				</div>
@@ -58,13 +58,13 @@
 						<form action="/userdetail/forward_change/" id="DeveloperUserPassForm" method="post" accept-charset="utf-8" autocomplete="off">
 							<div class="form-vartical">
 							<label for="domain">転送設定</label><br>
-							<input name="user_mail" class="form-control" id="mail_list_checkbox" value="1" type="checkbox"<TMPL_IF NAME="USER_MAIL"> checked</TMPL_IF>><label class="checkbox_label" for="mail_list_checkbox">メールボックスにもためる</label>
 							</div>
-							<label for="password">転送するメールアドレス</label><br>
 							<textarea class="form-control area_ll" name="ailias_mail"><TMPL_LOOP NAME="ALIAS_ADDRESS"><TMPL_VAR NAME="line"></TMPL_LOOP></textarea>
 							<div class="btn-area">
 								<input name="add_button" class="btn btn-primary" type="submit" value="転送設定変更"/>
 							</div>
+							<label for="password">メールボックスの設定</label><br>
+							<input name="user_mail" class="form-control" id="mail_list_checkbox" value="1" type="checkbox"<TMPL_IF NAME="USER_MAIL"> checked</TMPL_IF>><label class="checkbox_label" for="mail_list_checkbox">メールボックスにためる</label>
 							<input type="hidden" name="target" value="1">
 						</form>
 					</div>
