@@ -60,22 +60,22 @@
 							<label for="domain">転送設定</label><br>
 							</div>
 							<textarea class="form-control area_ll" name="ailias_mail"><TMPL_LOOP NAME="ALIAS_ADDRESS"><TMPL_VAR NAME="line"></TMPL_LOOP></textarea>
-							<div class="btn-area">
-								<input name="add_button" class="btn btn-primary" type="submit" value="転送設定変更"/>
-							</div>
 							<label for="password">メールボックスの設定</label><br>
 							<input name="user_mail" class="form-control" id="mail_list_checkbox" value="1" type="checkbox"<TMPL_IF NAME="USER_MAIL"> checked</TMPL_IF>><label class="checkbox_label" for="mail_list_checkbox">メールボックスにためる</label>
 							<input type="hidden" name="target" value="1">
+							<div class="btn-area">
+								<input name="add_button" class="btn btn-primary" type="submit" value="設定を反映する"/>
+							</div>
 						</form>
 					</div>
 
 					<div class="tab-pane" id="highlevel_setting">
 						<h4 class="title">高度な設定</h4>
 						<form action="/userdetail/forward_change/" id="DeveloperUserPassForm" method="post" accept-charset="utf-8" autocomplete="off">
-							<label for="password">転送を編集する</label><br>
+							<label for="password">.forwardを編集する</label><br>
 							<textarea class="form-control area_ll" name="forward_edit"><TMPL_LOOP NAME="LINE"><TMPL_VAR NAME="line"></TMPL_LOOP></textarea>
 							<div class="btn-area">
-								<input name="add_button" class="btn btn-primary" type="submit" value="転送変更"/>
+								<input name="add_button" class="btn btn-primary" type="submit" value="設定を反映する"/>
 							</div>
 							<input type="hidden" name="target" value="2">
 						</form>
