@@ -60,7 +60,7 @@ use strict;
 *ROLE_ROUTES = \{
 99  => '/domain/get/',
 2   => '/user/get/',
-1   => '/userpass/get/'
+1   => '/userdetail/get/'
 };
 
 1;
