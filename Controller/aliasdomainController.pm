@@ -90,7 +90,7 @@ sub add {
 			$self->set_message($self->get_message($c->{retval}), 'success');
 		}
 	}
-	$self->location('/aliasdomain/get');
+	$self->get();
 }
 
 sub del {
