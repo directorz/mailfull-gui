@@ -41,23 +41,26 @@ h4.title {
 	.login-panel > .panel-heading {
 		height: 70px;
 		padding: 0px;
-		background: url(/docs/img/bord.jpg) repeat;
-		border-bottom: 3px solid #000;
+		background: url(/docs/img/hbord.jpg) no-repeat center;
+		border-bottom: 3px solid #FFF;
 		text-align: center;
 		vertical-align: middle;
 		padding-top: 10px;
 	}
 	.login-panel > .panel-footer {
-		background: url(/docs/img/bord.jpg) repeat;
-		border-top: 3px solid #000;
-		color: #FFF;
+		background: url(/docs/img/fbord.jpg) no-repeat;
+		border-top: 3px solid #FFF;
+		color: #000;
+		font-weight: bold;
 		text-align: center;
 		vertical-align: middle;
+		background-position: top right;
 	}
 	.login-panel > .panel-footer p a {
-		color: #FFF;
+		color: #000;
 		text-decoration: underline;
 	}
+
 .btn-area {
 	margin: 10px 0;
 	text-align: center;
@@ -97,7 +100,7 @@ i.icon-gray {
 	background: none;
 }
 .panel-body {
-	opacity: 0.9;
+	opacity: 1;
 	background-color: #FFF;
 }
 .panel-body .description-dot {
@@ -121,4 +124,10 @@ i.icon-gray {
 textarea.area_ll {
 	height: 200px;
 }
+
+
+	@media screen and (max-width: 1200px) {
+	.login-panel > .panel-footer p {
+		text-align: left;
+	}
 
